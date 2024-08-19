@@ -4,12 +4,14 @@
 #include <iostream>
 
 #include "includes/rect.h"
+#include "includes/Text.h"
 
 void render() {}
 
 void update() {}
 
 int main(int argc, char *argv[]) {
+  
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError()
@@ -43,41 +45,11 @@ int main(int argc, char *argv[]) {
     SDL_Quit();
     return 1;
   }
-  std::cout << "Program Started!" << std::endl;
 
-  SDL_Texture *img = NULL;
-  int w, h; // texture width & height
-
-  // load our image
-  img = IMG_LoadTexture(renderer, "Images/bg.png");
-  SDL_QueryTexture(img, NULL, NULL, &w,
-                   &h); // get the width and height of the texture
-  // put the location where we want the texture to be drawn into a rectangle
-  // I'm also scaling the texture 2x simply by setting the width and height
-  SDL_Rect texr;
-  texr.x = 0;
-  texr.y = 0;
-  texr.w = 640;
-  texr.h = 480;
-
-  TTF_Font* Sans = TTF_OpenFont("includes/Sans.ttf", 24);
-  SDL_Color White = {255, 0, 0};
-
-  // as TTF_RenderText_Solid could only be used on
-  // SDL_Surface then you have to create the surface first
-  SDL_Surface* surfaceMessage =
-      TTF_RenderText_Solid(Sans, "TEST", White); 
-
-  // now you can convert it into a texture
-  SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-
-  SDL_FreeSurface(surfaceMessage);
+  // Init all vars
+  Text text("Hello World", "includes/Sans.ttf", renderer);
   
-  SDL_Rect Message_rect; //create a rect
-  Message_rect.x = 10;  //controls the rect's x coordinate 
-  Message_rect.y = 10; // controls the rect's y coordinte
-  Message_rect.w = 100; // controls the width of the rect
-  Message_rect.h = 50; // controls the height of the rect
+  std::cout << "Program Started!" << std::endl;
 
   unsigned int a = SDL_GetTicks();
   unsigned int b = SDL_GetTicks();
@@ -108,16 +80,11 @@ int main(int argc, char *argv[]) {
       SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
       SDL_RenderClear(renderer);
 
-      // copy the texture to the rendering context
-      //SDL_RenderCopy(renderer, img, NULL, &texr);
-      SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-
-      // Don't forget to free your surface and texture
-      //SDL_FreeSurface(surfaceMessage);
-      //SDL_DestroyTexture(Message);
+      // Draw Text
+      text.render();
 
       // Draw a rectangle
-      //DrawRect(renderer, 10, 10, 30, 30);
+      DrawRect(renderer, 10, 10, 30, 30);
 
       // Update the screen
       SDL_RenderPresent(renderer);
@@ -127,7 +94,6 @@ int main(int argc, char *argv[]) {
   // Clean up
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
-  SDL_DestroyTexture(Message);
   SDL_Quit();
 
   return 0;
