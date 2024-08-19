@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 
 #include "includes/rect.h"
@@ -13,6 +14,10 @@ int main(int argc, char *argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError()
               << std::endl;
+    return 1;
+  }
+  if ( TTF_Init() < 0 ) {
+    std::cout << "Error initializing SDL_ttf: " << TTF_GetError() << std::endl;
     return 1;
   }
 
@@ -55,6 +60,25 @@ int main(int argc, char *argv[]) {
   texr.w = 640;
   texr.h = 480;
 
+  TTF_Font* Sans = TTF_OpenFont("includes/Sans.ttf", 24);
+  SDL_Color White = {255, 0, 0};
+
+  // as TTF_RenderText_Solid could only be used on
+  // SDL_Surface then you have to create the surface first
+  SDL_Surface* surfaceMessage =
+      TTF_RenderText_Solid(Sans, "TEST", White); 
+
+  // now you can convert it into a texture
+  SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+
+  SDL_FreeSurface(surfaceMessage);
+  
+  SDL_Rect Message_rect; //create a rect
+  Message_rect.x = 10;  //controls the rect's x coordinate 
+  Message_rect.y = 10; // controls the rect's y coordinte
+  Message_rect.w = 100; // controls the width of the rect
+  Message_rect.h = 50; // controls the height of the rect
+
   unsigned int a = SDL_GetTicks();
   unsigned int b = SDL_GetTicks();
   double delta = 0;
@@ -66,7 +90,7 @@ int main(int argc, char *argv[]) {
 
     if (delta > 1000 / 60.0) {
 
-      std::cout << "fps: " << 1000 / delta << std::endl;
+      //std::cout << "fps: " << 1000 / delta << std::endl;
 
       b = a;
 
@@ -85,10 +109,15 @@ int main(int argc, char *argv[]) {
       SDL_RenderClear(renderer);
 
       // copy the texture to the rendering context
-      SDL_RenderCopy(renderer, img, NULL, &texr);
+      //SDL_RenderCopy(renderer, img, NULL, &texr);
+      SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+
+      // Don't forget to free your surface and texture
+      //SDL_FreeSurface(surfaceMessage);
+      //SDL_DestroyTexture(Message);
 
       // Draw a rectangle
-      DrawRect(renderer, 10, 10, 30, 30);
+      //DrawRect(renderer, 10, 10, 30, 30);
 
       // Update the screen
       SDL_RenderPresent(renderer);
@@ -98,6 +127,7 @@ int main(int argc, char *argv[]) {
   // Clean up
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
+  SDL_DestroyTexture(Message);
   SDL_Quit();
 
   return 0;
