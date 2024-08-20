@@ -4,7 +4,8 @@
 
 #include "Text.h"
 
-Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer, int xPos, int yPos, int FontSize) {
+Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer,
+           int xPos, int yPos, int FontSize) {
   text = Text;
   font = TTF_OpenFont(FontPath.c_str(), FontSize);
   renderer = Renderer;
@@ -17,7 +18,7 @@ Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer, int x
   rect.y = yPos;
   rect.w = surface->w;
   rect.h = surface->h;
-  
+
   SDL_FreeSurface(surface);
 }
 

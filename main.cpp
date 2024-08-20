@@ -1,8 +1,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
+#include <vector>
 
 #include "include/Text.h"
+#include "include/graphics.h"
 #include "include/rect.h"
 
 void render() {}
@@ -11,15 +13,9 @@ void update() {}
 
 int main(int argc, char *argv[]) {
 
-  // Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError()
-              << std::endl;
-    return 1;
-  }
-  if (TTF_Init() < 0) {
-    std::cout << "Error initializing SDL_ttf: " << TTF_GetError() << std::endl;
-    return 1;
+  // Init Graphics
+  if (GraphicsInit() == 0) {
+    return 0;
   }
 
   // Create a window
@@ -46,8 +42,9 @@ int main(int argc, char *argv[]) {
   }
 
   // Init all vars
-  Text text("Hello World", "fonts/Sans.ttf", renderer, 100, 100, 30);
-  Text text2("HI", "fonts/Sans.ttf", renderer, 100, 150, 30);
+
+  // std::vector<Text> text;
+  // text.push_back(Text("HI1", "fonts/Sans.ttf", renderer, 50, 50, 25));
 
   std::cout << "Program Started!" << std::endl;
 
@@ -79,10 +76,6 @@ int main(int argc, char *argv[]) {
       // Clear the screen with white
       SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
       SDL_RenderClear(renderer);
-
-      // Draw Text
-      text.render();
-      text2.render();
 
       // Draw a rectangle
       DrawRect(renderer, 10, 10, 30, 30);
