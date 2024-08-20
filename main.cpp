@@ -75,10 +75,8 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  // Clean up
-  SDL_DestroyRenderer(graphics.renderer);
-  SDL_DestroyWindow(graphics.window);
-  SDL_Quit();
+  // Clean Up
+  graphics.CleanUp();
 
   return 0;
 }

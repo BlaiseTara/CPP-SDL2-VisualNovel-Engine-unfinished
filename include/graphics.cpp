@@ -44,3 +44,10 @@ int Graphics::CreateRenderer() {
   }
   return 1;
 }
+
+void Graphics::CleanUp(){
+  // Clean up
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
+  SDL_Quit();
+}

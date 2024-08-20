@@ -10,6 +10,7 @@ public:
   int Init();
   int CreateWindow(std::string Title, int Width, int Height);
   int CreateRenderer();
+  void CleanUp();
   SDL_Window *window;
   SDL_Renderer *renderer;
   
