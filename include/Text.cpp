@@ -9,7 +9,7 @@ Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer,
   text = Text;
   font = TTF_OpenFont(FontPath.c_str(), FontSize);
   renderer = Renderer;
-  SDL_Color COLOR = {255, 0, 0};
+  SDL_Color COLOR = {0, 0, 0};
   SDL_Surface *surface = TTF_RenderText_Solid(font, Text.c_str(), COLOR);
 
   texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -22,4 +22,7 @@ Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer,
   SDL_FreeSurface(surface);
 }
 
-void Text::render() { SDL_RenderCopy(renderer, texture, NULL, &rect); }
+void Text::render() {
+  // Copys the text onto the Renderer
+  SDL_RenderCopy(renderer, texture, NULL, &rect);
+}

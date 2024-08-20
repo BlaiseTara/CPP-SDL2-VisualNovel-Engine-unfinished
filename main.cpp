@@ -7,9 +7,20 @@
 #include "include/graphics.h"
 #include "include/rect.h"
 
-void render() {}
+void update() {
+}
 
-void update() {}
+void render(Graphics graphics) {
+  // Clear the screen with white
+  SDL_SetRenderDrawColor(graphics.renderer, 255, 255, 255, 255);
+  SDL_RenderClear(graphics.renderer);
+
+  // Draw a rectangle
+  DrawRect(graphics.renderer, 10, 10, 30, 30);
+
+  // Update the screen
+  SDL_RenderPresent(graphics.renderer);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -61,17 +72,10 @@ int main(int argc, char *argv[]) {
         }
       }
 
+      // Update things
+      update();
       // Render things
-
-      // Clear the screen with white
-      SDL_SetRenderDrawColor(graphics.renderer, 255, 255, 255, 255);
-      SDL_RenderClear(graphics.renderer);
-
-      // Draw a rectangle
-      DrawRect(graphics.renderer, 10, 10, 30, 30);
-
-      // Update the screen
-      SDL_RenderPresent(graphics.renderer);
+      render(graphics);
     }
   }
 
