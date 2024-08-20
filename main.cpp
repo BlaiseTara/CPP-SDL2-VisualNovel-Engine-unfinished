@@ -13,32 +13,22 @@ void update() {}
 
 int main(int argc, char *argv[]) {
 
+  // Create a Graphics Object
+  Graphics graphics;
+
   // Init Graphics
-  if (GraphicsInit() == 0) {
+  if (graphics.Init() == 0) {
     return 0;
   }
 
-  // Create a window
-  SDL_Window *window =
-      SDL_CreateWindow("SDL Rectangle", SDL_WINDOWPOS_UNDEFINED,
-                       SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
-  if (window == nullptr) {
-    std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError()
-              << std::endl;
-    SDL_Quit();
-    return 1;
+  // Create a Window
+  if (graphics.CreateWindow("Engine", 640, 480) == 0) {
+    return 0;
   }
 
-  // Create a renderer
-  SDL_Renderer *renderer =
-      SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-  if (renderer == nullptr) {
-    std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError()
-              << std::endl;
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-    return 1;
+  // Create a Renderer
+  if (graphics.CreateRenderer() == 0) {
+    return 0;
   }
 
   // Init all vars
@@ -74,20 +64,20 @@ int main(int argc, char *argv[]) {
       // Render things
 
       // Clear the screen with white
-      SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-      SDL_RenderClear(renderer);
+      SDL_SetRenderDrawColor(graphics.renderer, 255, 255, 255, 255);
+      SDL_RenderClear(graphics.renderer);
 
       // Draw a rectangle
-      DrawRect(renderer, 10, 10, 30, 30);
+      DrawRect(graphics.renderer, 10, 10, 30, 30);
 
       // Update the screen
-      SDL_RenderPresent(renderer);
+      SDL_RenderPresent(graphics.renderer);
     }
   }
 
   // Clean up
-  SDL_DestroyRenderer(renderer);
-  SDL_DestroyWindow(window);
+  SDL_DestroyRenderer(graphics.renderer);
+  SDL_DestroyWindow(graphics.window);
   SDL_Quit();
 
   return 0;

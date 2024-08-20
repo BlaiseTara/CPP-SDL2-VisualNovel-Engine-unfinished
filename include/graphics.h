@@ -5,6 +5,15 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 
-int GraphicsInit();
+class Graphics{
+public:
+  int Init();
+  int CreateWindow(std::string Title, int Width, int Height);
+  int CreateRenderer();
+  SDL_Window *window;
+  SDL_Renderer *renderer;
+  
+private:
+};
 
 #endif
