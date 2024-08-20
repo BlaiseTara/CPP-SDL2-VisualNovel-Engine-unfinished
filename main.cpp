@@ -1,24 +1,23 @@
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 
-#include "includes/rect.h"
-#include "includes/Text.h"
+#include "include/Text.h"
+#include "include/rect.h"
 
 void render() {}
 
 void update() {}
 
 int main(int argc, char *argv[]) {
-  
+
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError()
               << std::endl;
     return 1;
   }
-  if ( TTF_Init() < 0 ) {
+  if (TTF_Init() < 0) {
     std::cout << "Error initializing SDL_ttf: " << TTF_GetError() << std::endl;
     return 1;
   }
@@ -48,7 +47,7 @@ int main(int argc, char *argv[]) {
 
   // Init all vars
   Text text("Hello World", "includes/Sans.ttf", renderer);
-  
+
   std::cout << "Program Started!" << std::endl;
 
   unsigned int a = SDL_GetTicks();
@@ -62,7 +61,7 @@ int main(int argc, char *argv[]) {
 
     if (delta > 1000 / 60.0) {
 
-      //std::cout << "fps: " << 1000 / delta << std::endl;
+      // std::cout << "fps: " << 1000 / delta << std::endl;
 
       b = a;
 
