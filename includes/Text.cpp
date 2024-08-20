@@ -21,6 +21,4 @@ Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer) {
   rect.h = 50;
 }
 
-void Text::render(){
-  SDL_RenderCopy(renderer, texture, NULL, &rect);
-}
+void Text::render() { SDL_RenderCopy(renderer, texture, NULL, &rect); }
