@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Init all vars
-  Text text("Hello World", "includes/Sans.ttf", renderer);
+  Text text("Hello World", "fonts/Sans.ttf", renderer);
 
   std::cout << "Program Started!" << std::endl;
 
