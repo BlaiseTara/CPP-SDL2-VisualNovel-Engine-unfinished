@@ -46,7 +46,8 @@ int main(int argc, char *argv[]) {
   }
 
   // Init all vars
-  Text text("Hello World", "fonts/Sans.ttf", renderer);
+  Text text("Hello World", "fonts/Sans.ttf", renderer, 100, 100, 30);
+  Text text2("HI", "fonts/Sans.ttf", renderer, 100, 150, 30);
 
   std::cout << "Program Started!" << std::endl;
 
@@ -81,6 +82,7 @@ int main(int argc, char *argv[]) {
 
       // Draw Text
       text.render();
+      text2.render();
 
       // Draw a rectangle
       DrawRect(renderer, 10, 10, 30, 30);

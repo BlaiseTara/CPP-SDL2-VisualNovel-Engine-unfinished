@@ -8,11 +8,11 @@
 class Text {
 
 public:
-  std::string text;
-  Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer);
+  Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer, int xPos, int yPos, int FontSize);
   void render();
 
 private:
+  std::string text;
   TTF_Font *font;
   SDL_Texture *texture;
   SDL_Renderer *renderer;
