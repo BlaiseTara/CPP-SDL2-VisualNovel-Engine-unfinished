@@ -9,13 +9,13 @@ void render() {
   SDL_RenderClear(graphics.renderer);
 
   // Draw a rectangle
-  DrawRect(graphics.renderer, 10, 10, 30, 30);
+  graphics.DrawRect(10, 10, 20, 10, 255, 0, 0, 255);
 
   // Update the screen
   SDL_RenderPresent(graphics.renderer);
 }
 
-int main(int argc, char *argv[]) {
+int main() {
 
   // Init Graphics
   if (graphics.Init() == 0) {

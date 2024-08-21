@@ -42,6 +42,20 @@ int Graphics::CreateRenderer() {
   return 1;
 }
 
+void Graphics::DrawRect(int x, int y, int w, int h, int r, int g, int b, int a){
+  // Define the rectangle
+  SDL_Rect rect;
+  rect.x = x;
+  rect.y = y;
+  rect.w = w;
+  rect.h = h;
+
+  // Set Color
+  SDL_SetRenderDrawColor(renderer, r, g, b, a);
+  // Draw the rectangle
+  SDL_RenderFillRect(renderer, &rect);
+}
+
 void Graphics::CleanUp(){
   // Clean up
   SDL_DestroyRenderer(renderer);

@@ -7,7 +7,6 @@
 
 #include "include/Text.h"
 #include "include/graphics.h"
-#include "include/rect.h"
 
 Graphics graphics;
 
