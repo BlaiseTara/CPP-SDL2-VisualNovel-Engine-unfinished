@@ -1,7 +1,3 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <iostream>
-
 #include "Text.h"
 
 Text::Text(std::string Text, std::string FontPath, SDL_Renderer *Renderer,

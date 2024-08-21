@@ -1,11 +1,4 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <iostream>
-#include <vector>
-
-#include "include/Text.h"
-#include "include/graphics.h"
-#include "include/rect.h"
+#include "main.h"
 
 void update() {
 }
@@ -23,9 +16,6 @@ void render(Graphics graphics) {
 }
 
 int main(int argc, char *argv[]) {
-
-  // Create a Graphics Object
-  Graphics graphics;
 
   // Init Graphics
   if (graphics.Init() == 0) {

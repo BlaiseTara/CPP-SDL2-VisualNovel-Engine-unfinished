@@ -1,5 +1,4 @@
-#ifndef TEXT_H
-#define TEXT_H
+#pragma once
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -18,5 +17,3 @@ private:
   SDL_Renderer *renderer;
   SDL_Rect rect;
 };
-
-#endif

@@ -1,7 +1,4 @@
 #include "graphics.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <iostream>
 
 int Graphics::Init() {
   // Initialize SDL
