@@ -3,7 +3,7 @@
 void update() {
 }
 
-void render(Graphics graphics) {
+void render() {
   // Clear the screen with white
   SDL_SetRenderDrawColor(graphics.renderer, 255, 255, 255, 255);
   SDL_RenderClear(graphics.renderer);
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
       // Update things
       update();
       // Render things
-      render(graphics);
+      render();
     }
   }
 
