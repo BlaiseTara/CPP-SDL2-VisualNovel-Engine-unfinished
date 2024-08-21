@@ -15,8 +15,8 @@ public:
   int CreateWindow(std::string Title, int Width, int Height);
   int CreateRenderer();
   void DrawRect(int x, int y, int w, int h, int r, int g, int b, int a);
-  void DrawText(std::string Text, int x, int y, int size, uint8_t r, uint8_t g,
-                uint8_t b, uint8_t a);
+  void DrawText(std::string Text, int x, int y, int size, uint32_t wrapLength,
+                uint8_t r, uint8_t g, uint8_t b, uint8_t a);
   void CleanUp();
 
 private:

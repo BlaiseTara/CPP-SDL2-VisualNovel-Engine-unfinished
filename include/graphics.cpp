@@ -61,12 +61,15 @@ void Graphics::DrawRect(int x, int y, int w, int h, int r, int g, int b,
   SDL_RenderFillRect(renderer, &rect);
 }
 
-void Graphics::DrawText(std::string text, int x, int y, int size, uint8_t r,
-                        uint8_t g, uint8_t b, uint8_t a) {
+void Graphics::DrawText(std::string text, int x, int y, int size,
+                        uint32_t wrapLength, uint8_t r, uint8_t g, uint8_t b,
+                        uint8_t a) {
   TTF_SetFontSize(Font, size);
   SDL_Color TextColor = {r, g, b, a};
+  // SDL_Surface *TextSurface =
+  //     TTF_RenderText_Solid(Font, text.c_str(), TextColor);
   SDL_Surface *TextSurface =
-      TTF_RenderText_Solid(Font, text.c_str(), TextColor);
+      TTF_RenderText_Blended_Wrapped(Font, text.c_str(), TextColor, wrapLength);
 
   SDL_Texture *TextTexture =
       SDL_CreateTextureFromSurface(renderer, TextSurface);

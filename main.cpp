@@ -18,7 +18,10 @@ void render() {
   graphics.DrawRect(20, height - 150, width - 40, 140, 100, 100, 100, 100);
 
   // Draw the Dialog Text
-  graphics.DrawText(std::to_string(fps), 10, 10, 25, 0, 0, 0, 255);
+  graphics.DrawText("This is some test text for the line wrapping. this is a very long sentence...", 50, 50, 25, 200, 0, 0, 0, 255);
+
+  // Draw the FPS
+  graphics.DrawText("FPS: " + std::to_string(fps), 10, 10, 17, 200, 0, 0, 0, 255);
 
   // Update the screen
   SDL_RenderPresent(graphics.renderer);
