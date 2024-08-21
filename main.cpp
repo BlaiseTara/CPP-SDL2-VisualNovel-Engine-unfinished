@@ -12,19 +12,19 @@ void render() {
   int height = 0;
   SDL_GetWindowSize(graphics.window, &width, &height);
 
-
   // Draw images and charcters here
-  
-  
+
   // Draw the Dialog Box
   graphics.DrawRect(20, height - 150, width - 40, 140, 100, 100, 100, 100);
+
+  // Draw the Dialog Text
+  graphics.DrawText(std::to_string(fps), 10, 10, 25, 0, 0, 0, 255);
 
   // Update the screen
   SDL_RenderPresent(graphics.renderer);
 }
 
 int main() {
-
   // Init Graphics
   if (graphics.Init() == 0) {
     return 0;
@@ -42,25 +42,22 @@ int main() {
 
   // Init all vars
 
-  // std::vector<Text> text;
-  // text.push_back(Text("HI1", "fonts/Sans.ttf", renderer, 50, 50, 25));
-
   std::cout << "Program Started!" << std::endl;
 
-  unsigned int a = SDL_GetTicks();
-  unsigned int b = SDL_GetTicks();
-  double delta = 0;
+  unsigned int newTime = 0;
+  unsigned int oldTime = 0;
+  unsigned int delta = 0;
 
   // Main Loop
   while (true) {
-    a = SDL_GetTicks();
-    delta = a - b;
+    newTime = SDL_GetTicks();
+    delta = newTime - oldTime;
 
     if (delta > 1000 / 60.0) {
 
       // std::cout << "fps: " << 1000 / delta << std::endl;
-
-      b = a;
+      oldTime = newTime;
+      fps = 1000 / delta;
 
       // Get the next event
       SDL_Event event;

@@ -7,10 +7,13 @@ int Graphics::Init() {
               << std::endl;
     return 0;
   }
+  // Initialize Fonts
   if (TTF_Init() < 0) {
     std::cout << "Error initializing SDL_ttf: " << TTF_GetError() << std::endl;
     return 0;
   }
+  // Load a font
+  Font = TTF_OpenFont("fonts/Sans.ttf", 30);
   return 1;
 }
 
@@ -43,7 +46,8 @@ int Graphics::CreateRenderer() {
   return 1;
 }
 
-void Graphics::DrawRect(int x, int y, int w, int h, int r, int g, int b, int a){
+void Graphics::DrawRect(int x, int y, int w, int h, int r, int g, int b,
+                        int a) {
   // Define the rectangle
   SDL_Rect rect;
   rect.x = x;
@@ -57,7 +61,29 @@ void Graphics::DrawRect(int x, int y, int w, int h, int r, int g, int b, int a){
   SDL_RenderFillRect(renderer, &rect);
 }
 
-void Graphics::CleanUp(){
+void Graphics::DrawText(std::string text, int x, int y, int size, uint8_t r,
+                        uint8_t g, uint8_t b, uint8_t a) {
+  TTF_SetFontSize(Font, size);
+  SDL_Color TextColor = {r, g, b, a};
+  SDL_Surface *TextSurface =
+      TTF_RenderText_Solid(Font, text.c_str(), TextColor);
+
+  SDL_Texture *TextTexture =
+      SDL_CreateTextureFromSurface(renderer, TextSurface);
+
+  SDL_Rect TextRect;
+
+  TextRect.x = x;
+  TextRect.y = y;
+  TextRect.w = TextSurface->w;
+  TextRect.h = TextSurface->h;
+
+  SDL_FreeSurface(TextSurface);
+  SDL_RenderCopy(renderer, TextTexture, NULL, &TextRect);
+  SDL_DestroyTexture(TextTexture);
+}
+
+void Graphics::CleanUp() {
   // Clean up
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
