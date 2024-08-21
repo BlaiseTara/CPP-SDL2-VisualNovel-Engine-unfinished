@@ -1,0 +1,3 @@
+int NAME = 0;
+str NAME = "";
+bool NAME = 0;

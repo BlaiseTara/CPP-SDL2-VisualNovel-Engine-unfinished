@@ -1,0 +1,30 @@
+1.
+Convert my engine and sdl all into 1 .dll.
+Create a compiler that converts my custom script code into C++ code.
+bundle G++ compiler into the compiler program.
+
+2.
+Create a Compiler program that turns all custom script files into 1 binary file.
+engine.exe then runs that file.
+
+Example:
+Syntax and machine code is just made up
+
+Custom script:
+
+int VarName = 1;
+
+
+Machine Code:
+
+0x32    // Tells engine that we are creating a new var
+0x00    // Tells engine that var should be an int16
+0x03    // Memory location Part 1
+0x02    // Memory location Part 2
+0x01    // Loads the The Number 1
+
+// What this does:
+Creates a new integer at memory location 0x0302 (hex will be comverted to decimal to use as array index)
+loads the hex value 0x01 into it
+
+
