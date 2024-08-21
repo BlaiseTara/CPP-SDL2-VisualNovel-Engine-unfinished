@@ -1,15 +1,23 @@
 #include "main.h"
 
-void update() {
-}
+void update() {}
 
 void render() {
   // Clear the screen with white
   SDL_SetRenderDrawColor(graphics.renderer, 255, 255, 255, 255);
   SDL_RenderClear(graphics.renderer);
 
-  // Draw a rectangle
-  graphics.DrawRect(10, 10, 20, 10, 255, 0, 0, 255);
+  // Get Window Dimensions
+  int width = 0;
+  int height = 0;
+  SDL_GetWindowSize(graphics.window, &width, &height);
+
+
+  // Draw images and charcters here
+  
+  
+  // Draw the Dialog Box
+  graphics.DrawRect(20, height - 150, width - 40, 140, 100, 100, 100, 100);
 
   // Update the screen
   SDL_RenderPresent(graphics.renderer);

@@ -31,6 +31,7 @@ int Graphics::CreateWindow(std::string Title, int Width, int Height) {
 int Graphics::CreateRenderer() {
   // Create a renderer
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
   if (renderer == nullptr) {
     std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError()
