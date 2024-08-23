@@ -12,8 +12,8 @@ Syntax and machine code is just made up
 
 Custom script:
 
-int VarName = 1;
 
+int VarName = 1;
 
 Machine Code:
 

@@ -1,0 +1,4 @@
+﻿Syntax,Machine Code,Use
+int NAME = 0;,0x01 0x00 0x01 0x00 0x00,First byte tells to define int. Next 2 define the index in vars array. Next 2 define the value to save
+bool NAME = False;,0x02 0x00 0x01 0x00,First byte tells to define bool. Next 2 define the index in vars array. Last tells to be   false: 0   or true: 1
+"string NAME = ""Name"";",0x03 0x00 0x01 0x00 0x04 0xN 0xa 0xm 0xe,First byte tells to define string. Next 2 define the index in vars array. Next 2 tell the string length. The rest will be each character in hex.
