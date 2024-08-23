@@ -17,17 +17,13 @@ void render() {
   // Draw the Dialog Box
   graphics.DrawRect(20, height - 150, width - 40, 140, 100, 100, 100, 100);
 
-  // Draw the Dialog Text
-  graphics.DrawText("This is some test text for the line wrapping. this is a very long sentence...", 50, 50, 25, 200, 0, 0, 0, 255);
-
-  // Draw the FPS
-  graphics.DrawText("FPS: " + std::to_string(fps), 10, 10, 17, 200, 0, 0, 0, 255);
+  graphics.DrawText("test", 10, 10, 20, 100, 255, 0, 0, 255);
 
   // Update the screen
   SDL_RenderPresent(graphics.renderer);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
   // Init Graphics
   if (graphics.Init() == 0) {
     return 0;

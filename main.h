@@ -9,6 +9,7 @@
 Graphics graphics;
 int fps;
 
-void render();
+int main(int argv, char** args);
+
 void update();
-int main();
+void render();
