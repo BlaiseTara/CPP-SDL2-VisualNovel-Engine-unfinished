@@ -1,3 +1,6 @@
 g++ -Iinclude main.cpp include/rect.cpp include/Text.cpp include/graphics.cpp -Llib -w -Wl,-subsystem,windows -static-libstdc++ -lSDL2main -lSDL2 -lSDL2_ttf -o main
 
+g++ Compiler.cpp include/Compiler/lexer.cpp -Llib -static-libstdc++ -o compiler
+
+
 MAKE SURE YOU DOWNLAOD THE X86 32BIT LIBS AND THNGS
